@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('workers', function (Blueprint $table) {
             $table->id();
             $table->string("name");
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->string("image"); //image path
-            $table->foreignId('spec_id')->constrained();
+            $table->foreignId('spec_id')->nullable();
             $table->timestamps();
         });
     }

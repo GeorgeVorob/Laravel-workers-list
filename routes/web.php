@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SpecController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('specs', SpecController::class)
+    ->only(['index', 'store']);
+
+Route::resource('workers', WorkerController::class)
+    ->only(['index', 'store']);

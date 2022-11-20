@@ -14,7 +14,7 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        //
+        return view('workers.index');
     }
 
     /**
@@ -35,7 +35,21 @@ class WorkerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'desc' => 'string|max:1024',
+            'image' => 'image|mimes:jpg,png,jpeg'
+        ]);
+
+        $path = $request->file('image')->store('images');
+
+        $worker = new Worker;
+        $worker->name = $validated['name'];
+        $worker->description = $validated['desc'];
+        $worker->image = $path;
+        $worker->save();
+
+        return redirect(route('workers.index'));
     }
 
     /**
