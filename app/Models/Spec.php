@@ -5,16 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Worker extends Model
+class Spec extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'image'
+        'name'
     ];
-
-    public function spec()
-    {
-        return $this->hasOne(Spec::class);
-    }
 }
