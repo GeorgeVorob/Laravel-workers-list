@@ -128,6 +128,13 @@ class WorkerController extends Controller
      */
     public function destroy(Worker $worker)
     {
-        //
+
+        //TODO: вынести в delete()?
+        if ($worker->image) {
+            Storage::disk('public')->delete($worker->image);
+        }
+        $worker->delete();
+
+        return redirect(route('workers.index'));
     }
 }

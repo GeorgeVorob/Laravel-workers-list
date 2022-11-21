@@ -28,6 +28,11 @@
             <a href="{{route('workers.edit', $worker)}}">
                 Edit
             </a>
+            <form method="POST" action="{{ route('workers.destroy', $worker) }}">
+                @csrf
+                @method('delete')
+                <button type="submit">Delete</button>
+            </form>
         </div>
         @endforeach
 
