@@ -21,12 +21,13 @@
         @foreach ($workers as $worker)
         <hr>
         <div>
-            <img src="{{ asset('avatars/RsG6wp8B9r2BYtmn0mjasdlFxFAAfKTpEfe62D9U.jpg') }}" alt="tag">
-            {{URL::asset($worker->image)}}
             <img src=" {{Storage::url($worker->image)}}" alt="nop" style="height: 100px;width: 100px;">
             <h2>Имя: {{$worker->name}}</h2>
             <h2>Описание: {{$worker->description}}</h2>
             <h2>Специализация: {{$worker->spec->name}}</h2>
+            <a href="{{route('workers.edit', $worker)}}">
+                Edit
+            </a>
         </div>
         @endforeach
 

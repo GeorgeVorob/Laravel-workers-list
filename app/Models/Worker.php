@@ -10,7 +10,7 @@ class Worker extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'image'
+        'name', 'description', 'image', 'spec_id'
     ];
 
     public function spec()

@@ -23,4 +23,4 @@ Route::resource('specs', SpecController::class)
     ->only(['index', 'store']);
 
 Route::resource('workers', WorkerController::class)
-    ->only(['index', 'store']);
+    ->only(['index', 'store', 'edit', 'update']);
