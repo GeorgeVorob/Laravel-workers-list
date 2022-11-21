@@ -15,6 +15,6 @@ class Worker extends Model
 
     public function spec()
     {
-        return $this->hasOne(Spec::class);
+        return $this->belongsTo(Spec::class);
     }
 }

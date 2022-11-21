@@ -14,7 +14,9 @@ class WorkerController extends Controller
      */
     public function index()
     {
-        return view('workers.index');
+        return view('workers.index', [
+            'workers' => Worker::all()
+        ]);
     }
 
     /**
@@ -41,7 +43,7 @@ class WorkerController extends Controller
             'image' => 'image|mimes:jpg,png,jpeg'
         ]);
 
-        $path = $request->file('image')->store('images');
+        $path = $request->file('image')->store('images', 'public');
 
         $worker = new Worker;
         $worker->name = $validated['name'];
