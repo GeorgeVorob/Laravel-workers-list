@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Worker;
+use App\Models\Spec;
 use Illuminate\Http\Request;
 
 class WorkerController extends Controller
@@ -15,7 +16,8 @@ class WorkerController extends Controller
     public function index()
     {
         return view('workers.index', [
-            'workers' => Worker::all()
+            'workers' => Worker::all(),
+            'specs' => Spec::all()
         ]);
     }
 
@@ -40,7 +42,8 @@ class WorkerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'string|max:1024',
-            'image' => 'image|mimes:jpg,png,jpeg'
+            'image' => 'image|mimes:jpg,png,jpeg',
+            'spec_id' => 'numeric|required'
         ]);
 
         $path = $request->file('image')->store('images', 'public');
@@ -48,6 +51,7 @@ class WorkerController extends Controller
         $worker = new Worker;
         $worker->name = $validated['name'];
         $worker->description = $validated['desc'];
+        $worker->spec()->associate(Spec::find($validated['spec_id']));
         $worker->image = $path;
         $worker->save();
 

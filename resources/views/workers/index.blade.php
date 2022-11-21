@@ -10,6 +10,11 @@
             <label>Фото</label>
             <input type="file" name="image" />
             </br>
+            <select name='spec_id'>
+                @foreach ($specs as $spec)
+                <option value="{{$spec->id}}">{{$spec->name}}</option>
+                @endforeach
+            </select>
             <button type="submit">Create worker</button>
         </form>
 
