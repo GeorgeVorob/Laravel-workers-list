@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpecController;
+use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::resource('workers', WorkerController::class)
+    ->only(['index', 'store', 'edit', 'update', 'destroy']);
+
+Route::resource('specs', SpecController::class)
+    ->only(['index', 'store']);
+
+
+    
 Route::get('/', function () {
     return view('welcome');
 });
@@ -28,4 +38,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
