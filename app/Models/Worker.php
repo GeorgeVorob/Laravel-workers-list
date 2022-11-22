@@ -10,11 +10,11 @@ class Worker extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'description', 'image'
+        'name', 'description', 'image', 'spec_id'
     ];
 
     public function spec()
     {
-        return $this->hasOne(Spec::class);
+        return $this->belongsTo(Spec::class);
     }
 }
