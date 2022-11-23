@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WorkerController;
 use Illuminate\Support\Facades\Route;
+use App\UseCases\WorkersCases;
+use App\UseCases\SpecsCases;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +23,10 @@ Route::resource('workers', WorkerController::class)
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('workers.index', [
+        'workers' => WorkersCases::GetWorkers(),
+        'specs' => SpecsCases::GetSpecs()
+    ]);
 });
 
 Route::get('/dashboard', function () {
