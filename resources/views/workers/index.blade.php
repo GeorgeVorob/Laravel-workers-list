@@ -39,12 +39,12 @@
                     <h5 class="card-title">{{$worker->name}} <small class="text-muted">{{$worker->spec->name}}</small></h5>
                     <p class="card-text worker-card-desc"> {{$worker->description}}</p>
                     <a class="btn btn-primary worker-card-button" href="{{route('workers.edit', $worker)}}">
-                        Edit
+                        Изменить
                     </a>
                     <form class="worker-card-button" method="POST" action="{{ route('workers.destroy', $worker) }}">
                         @csrf
                         @method('delete')
-                        <button class="btn btn-primary" type="submit">Delete</button>
+                        <button class="btn btn-primary" type="submit">Удалить</button>
                     </form>
                 </div>
             </div>
