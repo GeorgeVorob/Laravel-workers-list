@@ -5,7 +5,7 @@
         <div class="form-group">
             <div class="mb-2">
                 <label class="form-label">Имя</label>
-                <input name="name" placeholder="Имя работника" class="form-control" required>
+                <input name="name" placeholder="Иванов Иван" class="form-control" required>
             </div>
             <div class="mb-2">
                 <label class="form-label">Описание</label>
@@ -23,26 +23,34 @@
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary">Create worker</button>
+            <button type="submit" class="btn btn-primary">Добавить сотрудника</button>
         </div>
     </form>
     <hr>
 
     @foreach ($workers as $worker)
-    <div>
-        <img src=" {{Storage::url($worker->image)}}" alt="nop" style="height: 100px;width: 100px;">
-        <h2>Имя: {{$worker->name}}</h2>
-        <h2>Описание: {{$worker->description}}</h2>
-        <h2>Специализация: {{$worker->spec->name}}</h2>
-        <a href="{{route('workers.edit', $worker)}}">
-            Edit
-        </a>
-        <form method="POST" action="{{ route('workers.destroy', $worker) }}">
-            @csrf
-            @method('delete')
-            <button type="submit">Delete</button>
-        </form>
+    <div class="card mb-3 worker-card">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <img src="{{Storage::url($worker->image)}}" class="img-fluid rounded-start worker-card-image" alt="Нет изображения">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body worker-card-body">
+                    <h5 class="card-title">{{$worker->name}} <small class="text-muted">{{$worker->spec->name}}</small></h5>
+                    <p class="card-text worker-card-desc"> {{$worker->description}}</p>
+                    <a class="btn btn-primary worker-card-button" href="{{route('workers.edit', $worker)}}">
+                        Edit
+                    </a>
+                    <form class="worker-card-button" method="POST" action="{{ route('workers.destroy', $worker) }}">
+                        @csrf
+                        @method('delete')
+                        <button class="btn btn-primary" type="submit">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+
     <hr>
     @endforeach
 </x-app-layout>
