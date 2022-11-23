@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/*app-layout*/
+main {
+    margin: 20px auto 0px auto;
+    max-width: 700px;
+}
+
+.navbar-sign {
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+/**/
+
+/*Workers index*/
+
+.worker-card {
+    padding: 16px;
+}
+
+.worker-card-desc {
+    border: 1px solid rgb(233, 233, 233);
+    padding: 10px;
+    height: 150px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.worker-card-image {
+    padding: 9px;
+}
+
+.worker-card-body {
+    padding: 0px;
+}
+
+.worker-card-button {
+    display: inline-block;
+}
+
+/**/

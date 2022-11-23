@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("description")->nullable();
-            $table->string("image"); //image path
+            $table->string("image")->nullable(); //image path
             $table->foreignId('spec_id')->nullable();
             $table->timestamps();
         });
