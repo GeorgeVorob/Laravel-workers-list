@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UseCases\WorkersCases;
+use App\Models\Worker;
+
 
 class workers_api extends Controller
 {
@@ -13,7 +16,9 @@ class workers_api extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'data' => Worker::all()->toArray(),
+        ]);
     }
 
     /**
@@ -24,18 +29,7 @@ class workers_api extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        WorkersCases::AddWorker($request);
     }
 
     /**
@@ -47,7 +41,9 @@ class workers_api extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $workerToUpdate = Worker::find($id);
+
+        WorkersCases::UpdateWorker($request, $workerToUpdate);
     }
 
     /**
@@ -58,6 +54,8 @@ class workers_api extends Controller
      */
     public function destroy($id)
     {
-        //
+        $workerToDelete = Worker::find($id);
+
+        WorkersCases::DeleteWorker($workerToDelete);
     }
 }
