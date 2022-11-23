@@ -43,17 +43,19 @@ class WorkerController extends Controller
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'desc' => 'string|max:1024',
-            'image' => 'required|image|mimes:jpg,png,jpeg',
+            'image' => 'image|mimes:jpg,png,jpeg',
             'spec_id' => 'numeric|required'
         ]);
 
-        $path = $request->file('image')->store('images', 'public');
-
         $worker = new Worker;
+        if (array_key_exists('image', $validated)) {
+            $path = $request->file('image')->store('images', 'public');
+            $worker->image = $path;
+        }
+
         $worker->name = $validated['name'];
         $worker->description = $validated['desc'];
         $worker->spec()->associate(Spec::find($validated['spec_id']));
-        $worker->image = $path;
         $worker->save();
 
         return redirect(route('workers.index'));
